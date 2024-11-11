@@ -1,5 +1,9 @@
+import LoginForm from "./components/LoginForm";
+
 export default function AuthPage() {
   return (
-    <div>This is the auth page</div>
-  )
+    <div className="flex justify-center items-center h-screen">
+      <LoginForm />
+    </div>
+  );
 }
