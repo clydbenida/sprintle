@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-export const authFormSchema = z.object({
+export const signInFormSchema = z.object({
   email: z.string(),
   password: z.string()
 })
 
-export type AuthFormType = z.infer<typeof authFormSchema>
+export type SignInFormType = z.infer<typeof signInFormSchema>

@@ -5,16 +5,19 @@ import { Input } from "@/components/ui/input";
 import { SignInFormType } from "@/schemas/authForm.schema";
 import { GoalIcon } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { createUser } from "../actions";
 
 interface LoginFormType {
   toggleCurrentForm: () => void
 }
 
-export default function LoginForm({toggleCurrentForm}: LoginFormType) {
+export default function RegisterForm({toggleCurrentForm}: LoginFormType) {
   const { register, handleSubmit } = useForm<SignInFormType>();
 
-  const onSubmit: SubmitHandler<SignInFormType> = (params) => {
-    console.log(params);
+  const onSubmit: SubmitHandler<SignInFormType> = async ({email, password}) => {
+    const userDetails = await createUser(email, password);
+
+    console.log(userDetails);
   }
 
   return (
@@ -31,16 +34,16 @@ export default function LoginForm({toggleCurrentForm}: LoginFormType) {
         />
       </div>
       <div className="flex flex-col gap-4">
-        <Button type="submit">Login</Button>
+        <Button type="submit">Create Account</Button>
         <Button>
-          <GoalIcon /> Login with Google
+          <GoalIcon /> Sign up with Google
         </Button>
         <p className="text-sm text-muted-foreground text-center">
-          Don&apos;t have an account yet?{" "}
+          Already have an account?{" "}
           <Button className="p-0" variant="link" type="button" onClick={toggleCurrentForm}>
             Click here
           </Button>{" "}
-          to register.
+          to login.
         </p>
       </div>
     </form>
